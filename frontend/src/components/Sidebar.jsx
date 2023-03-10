@@ -29,6 +29,7 @@ const setDrawer = (active, setActive, theme) => {
       <Accordion
         disableGutters
         sx={{
+          ml:'0.5rem',
           mb:'0.2rem',
           '&.MuiAccordion-root':{
             borderRadius:'8px'
@@ -46,7 +47,6 @@ const setDrawer = (active, setActive, theme) => {
           sx={{
             paddingBottom:'1px',
             paddingTop:'1px',
-            ml:'0.2rem',
             m:'0.01rem 0.1rem 0.1rem 0.1rem'
           }}
         >
@@ -150,6 +150,7 @@ const Sidebar = ({
                           onClick={() => setActive('Dashboard')}
                           component={Link} to='dashboard'
                           sx={{
+                            ml:'0.5rem',
                             borderRadius:'8px',
                             backgroundColor: active === 'Dashboard' 
                             ? theme.palette.secondary[400] 
@@ -167,7 +168,12 @@ const Sidebar = ({
                             }
                           }}
               >
-                <DashboardIcon/><ListItemText primary='Dashboard' />
+                <FlexBetween marginRight='1rem'>
+                  <DashboardIcon/>
+                </FlexBetween>
+                <FlexBetween>
+                  <ListItemText primary='Dashboard' />
+                </FlexBetween>             
               </ListItemButton>
             </ListItem>
           </List>
