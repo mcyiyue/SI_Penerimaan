@@ -6,7 +6,7 @@ import {
   DarkModeOutlined,
   Menu as MenuIcon,
 } from '@mui/icons-material'
-import {Button, IconButton, InputBase,useTheme,styled } from '@mui/material';
+import {Button, IconButton, InputBase, useTheme,styled } from '@mui/material';
 import FlexBetween from 'components/FlexBetween'
 import { useDispatch } from 'react-redux';
 import { setMode } from 'state';
