@@ -9,7 +9,6 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import { Card, CardContent, useTheme } from '@mui/material'
 
 export default function Login() {
@@ -24,6 +23,19 @@ export default function Login() {
   };
 
   return (
+    <>
+    <Box
+        display='flex'
+        justifyContent="center"
+        alignItems="center"
+        pt='5rem'
+    >
+        <Typography variant="h1" fontWeight='bold' fontSize='40px' sx={{
+            color:theme.palette.primary[200]
+        }}>
+            SI PENERIMAAN
+        </Typography>
+    </Box>
     <Box
         display='flex'
         justifyContent="center"
@@ -33,7 +45,7 @@ export default function Login() {
             minWidth: 400,
             ml: '45rem',
             mr: '45rem',
-            mt: '10rem',
+            mt: '1rem',
             pt:'0.1rem'
         }}>
             <CardContent>
@@ -147,5 +159,7 @@ export default function Login() {
             </CardContent>
         </Card>
     </Box>
+    </>
+    
   );
 }

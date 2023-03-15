@@ -17,7 +17,7 @@ import GrupAkses from "scenes/grupakses"
 import Layout from 'scenes/layout'
 
 function App() {
-  const [isLogin, setIsLogin] = useState(true)
+  const [isLogin, setIsLogin] = useState(false)
   const mode = useSelector((state) => state.global.mode)
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode])
   return (

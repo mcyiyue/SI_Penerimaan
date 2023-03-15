@@ -149,26 +149,26 @@ const Sidebar = ({
               disablePadding
             >
               <ListItemButton 
-                          onClick={() => setActive('Dashboard')}
-                          component={Link} to='dashboard'
-                          sx={{
-                            ml:'0.5rem',
-                            borderRadius:'8px',
-                            backgroundColor: active === 'Dashboard' 
-                            ? theme.palette.secondary[400] 
-                            : theme.palette.neutral[1000],
-                            color: active === 'Dashboard' 
-                            ? theme.palette.primary[500] 
-                            : theme.palette.secondary[50],
-                            '&:hover':{
-                              backgroundColor: active === 'Dashboard' 
-                              ? theme.palette.secondary[100]
-                              : theme.palette.neutral[700], 
-                              color: active === 'Dashboard' 
-                              ? theme.palette.neutral[1000]
-                              : theme.palette.secondary[200]
-                            }
-                          }}
+                onClick={() => setActive('Dashboard')}
+                component={Link} to='dashboard'
+                sx={{
+                  ml:'0.5rem',
+                  borderRadius:'8px',
+                  backgroundColor: active === 'Dashboard' 
+                  ? theme.palette.secondary[400] 
+                  : theme.palette.neutral[1000],
+                  color: active === 'Dashboard' 
+                  ? theme.palette.primary[500] 
+                  : theme.palette.secondary[50],
+                  '&:hover':{
+                    backgroundColor: active === 'Dashboard' 
+                    ? theme.palette.secondary[100]
+                    : theme.palette.neutral[700], 
+                    color: active === 'Dashboard' 
+                    ? theme.palette.neutral[1000]
+                    : theme.palette.secondary[200]
+                  }
+                }}
               >
                 <FlexBetween marginRight='1rem'>
                   <DashboardIcon/>
@@ -182,8 +182,7 @@ const Sidebar = ({
         { setDrawer(active, setActive, theme) }
         </Box>
       </Drawer>
-    )}
-    
+    )}  
   </Box>
   )
 }
