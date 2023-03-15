@@ -1,34 +1,15 @@
 import React, {useState} from 'react';
-import MuiAppBar from '@mui/material/AppBar';
+import {AppBar} from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import {
   LightModeOutlined,
   DarkModeOutlined,
   Menu as MenuIcon,
 } from '@mui/icons-material'
-import {Button, IconButton, InputBase, useTheme,styled } from '@mui/material';
+import {Button, IconButton, InputBase, useTheme} from '@mui/material';
 import FlexBetween from 'components/FlexBetween'
 import { useDispatch } from 'react-redux';
 import { setMode } from 'state';
-
-const drawerWidth = 240;
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    width: `calc(20% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
 
 const Navbar = ({isSidebarOpen, setIsSidebarOpen}) => {
   const dispatch = useDispatch()
