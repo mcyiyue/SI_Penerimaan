@@ -47,7 +47,9 @@ const Navbar = ({isSidebarOpen, setIsSidebarOpen}) => {
               )}
             </IconButton>
             <FlexBetween mr='2rem'>
-              <Button color='secondary'>Logout</Button>
+              <Button sx={{
+                color:theme.palette.secondary[50]
+              }}>Logout</Button>
             </FlexBetween>
           </FlexBetween>
           

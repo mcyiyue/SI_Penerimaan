@@ -170,7 +170,7 @@ const Sidebar = ({
                   }
                 }}
               >
-                <FlexBetween marginRight='1rem'>
+                <FlexBetween marginRight='0.5rem'>
                   <DashboardIcon/>
                 </FlexBetween>
                 <FlexBetween>
