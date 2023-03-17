@@ -12,4 +12,4 @@ class Transaksi{
                     GROUP BY unit_nama, debet, kredit, jenis, tgl, status ORDER BY tgl ASC;`    
 }
 
-export default Transaksi
+module.exports = Transaksi
