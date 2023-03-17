@@ -15,7 +15,7 @@ const addUser= async (req, res) => {
         password:hashPassword  
     })
     .then(resp => res.status(201).send({...resp, username,}))
-    .catch(e => res.send(e))
+    .catch(e => res.status(400).send(e.code))
 }
 
 const login= async (req, res) => {
@@ -24,7 +24,7 @@ const login= async (req, res) => {
     .where({
         username:username
     }).select('*')
-    .then(resp => {
+    .then((resp) => {
         const isValid = bcrypt.compareSync(password, resp[0].password)
         if(isValid){
             delete resp[0].password
@@ -33,7 +33,7 @@ const login= async (req, res) => {
             res.status(400).send('USERNAME ATAU PASSWORD SALAH')
         }       
     })
-    .catch(e => res.send(e))
+    .catch(e => res.status(400).send(e.code))
 }
 
 module.exports= {
