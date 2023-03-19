@@ -6,13 +6,14 @@ const knex = require('knex')({
 })
 
 const addUser= async (req, res) => {
-    const {username, password} = req.body
+    const {username, password, nama} = req.body
     const salt = bcrypt.genSaltSync(10);
     const hashPassword = bcrypt.hashSync(password, salt);
     knex('users')
     .insert({
         username:username,
-        password:hashPassword  
+        password:hashPassword,
+        nama:nama 
     })
     .then(resp => res.status(201).send({...resp, username,}))
     .catch(e => res.status(400).send(e.code))
