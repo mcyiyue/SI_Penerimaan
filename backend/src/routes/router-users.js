@@ -3,7 +3,9 @@ const { users } = require('../controllers')
 
 router.post('/adduser',users.addUser)
 router.post('/loginuser',users.loginUser)
-router.post('/deluser',users.delUser)
-router.post('/edituser',users.editUser)
+router.delete('/deluser',users.delUser)
+router.put('/edituser',users.editUser)
+router.put('/changepass',users.changePass)
+router.get('/alluser',users.allUser)
 
 module.exports = router
