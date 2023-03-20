@@ -7,7 +7,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cors())
 
-const appRoute = require('./src/routes')
-app.use('/', appRoute)
+const {
+    routerUsers,
+    routerBank,
+    routerTransaksi
+} = require('./src/routes')
+app.use('/', routerBank)
+app.use('/', routerTransaksi)
+app.use('/', routerUsers)
 
 app.listen(8080)
