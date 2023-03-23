@@ -1,4 +1,4 @@
-const config = require('../config/db')
+const config = require('../configs/db')
 const mysql = require('mysql')
 const pool = mysql.createPool(config)
 
