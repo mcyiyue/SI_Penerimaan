@@ -6,11 +6,7 @@ const allBank= async (req, res) => {
     .select('*')
     .then((resp) => {
         if(resp.length){
-            const mapResp = resp.map((data) => {
-                    delete data.password
-                    return data
-                })
-            res.status(200).send(mapResp)
+            res.status(200).send(resp)
         } else{
             res.send('TIDAK ADA DATA BANK')
         }
@@ -53,7 +49,8 @@ const editBank= async (req, res) => {
         alias:  alias,
         perusahaan: perusahaan,
         noKPPN: noKPPN,
-        tglBuka: tglBuka
+        tglBuka: tglBuka,
+        tglTutup: tglTutup ? tglTutup : undefined
     })
     .then(resp => res.status(201).send(resp.toString()))
     .catch(e => res.status(400).send(e.code))
