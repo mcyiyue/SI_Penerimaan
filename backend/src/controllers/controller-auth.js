@@ -25,6 +25,16 @@ const loginUser= async (req, res) => {
     .catch(e => res.status(400).send(e))
 }
 
+const logoutUser= async (req, res) => {
+    req.session.destroy((e) => {
+        if (e){
+            res.status(400).send('Tidak Dapat Logout')
+        } else {
+            res.status(200).send('Berhasil Logout')
+        }
+    })
+}
+
 const me = async (req, res) => {
     if(!req.session.userId){
         res.status(401).send('Mohon Login ke Akun Anda')
@@ -86,6 +96,7 @@ const changePass= async (req, res) => {
 
 module.exports={
     loginUser,
+    logoutUser,
     me,
     changePass
 }
