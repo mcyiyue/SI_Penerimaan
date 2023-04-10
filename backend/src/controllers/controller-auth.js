@@ -9,7 +9,8 @@ const loginUser= async (req, res) => {
     .where({
         'users.username':username,
         'users.active':1
-    }).select({
+    })
+    .select({
         id: 'users.id',
         username:'users.username',
         password:'users.password',
@@ -25,7 +26,17 @@ const loginUser= async (req, res) => {
             if(isValid){
                 delete resp[0].password
                 db('group_access')
-                .leftJoin('')
+                .groupBy('modules.id')
+                .leftJoin('sub_modules','group_access.sub_modules_id','sub_modules.id' )
+                .leftJoin('modules', 'sub_modules.modules_id', 'modules.id')
+                .where({
+                    'group_access.groups_id':resp[0].groups_id
+                })
+                .select({
+                    modules_id:'modules.id',
+                    modules_nama:'modules.nama',
+                })
+                .then((modulesResp) => console.log(modulesResp))
                 req.session.userId=resp[0].id
                 res.status(200).send(resp[0])
             } else{
