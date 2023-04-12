@@ -26,7 +26,6 @@ const loginUser= async (req, res) => {
             if(isValid){
                 delete resp[0].password
                 db('group_access')
-                .groupBy('modules.id')
                 .leftJoin('sub_modules','group_access.sub_modules_id','sub_modules.id' )
                 .leftJoin('modules', 'sub_modules.modules_id', 'modules.id')
                 .where({
@@ -35,8 +34,36 @@ const loginUser= async (req, res) => {
                 .select({
                     modules_id:'modules.id',
                     modules_nama:'modules.nama',
+                    sub_modules_id:'sub_modules.id',
+                    sub_modules_route:'sub_modules.route'
                 })
-                .then((modulesResp) => console.log(modulesResp))
+                .then((modulesResp) => {
+                    console.log(modulesResp)
+                    let modules=[]
+                    let tempModules
+                    for (let i = 0; i < modulesResp.length; i++){
+                        if (tempModules!=modulesResp[i].modules_id){
+                            modules.push({
+                                id:modulesResp[i].modules_id,
+                                nama:modulesResp[i].modules_nama,
+                                sub_modules:[{
+                                    id: modulesResp[i].sub_modules_id,
+                                    route:modulesResp[i].sub_modules_route
+                                }]
+                            })
+                            tempModules=modulesResp[i].modules_id
+                        } else {
+                            console.log(modulesResp[i],'onLoop')
+                            modules[modules.length-1].sub_modules.push({
+                                id: modulesResp[i].sub_modules_id,
+                                route:modulesResp[i].sub_modules_route
+                            })
+                        }
+                        
+                    }
+                    console.log(modules)
+                    console.log(modules[0].sub_modules)
+                })
                 req.session.userId=resp[0].id
                 res.status(200).send(resp[0])
             } else{
