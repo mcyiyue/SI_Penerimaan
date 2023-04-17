@@ -1,5 +1,4 @@
 const db = require('../configs/db')
-const bcrypt = require('bcrypt')
 
 const allBank= async (req, res) => {
     db('bank')
