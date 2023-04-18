@@ -18,9 +18,9 @@ const addBank= async (req, res) => {
     const {noRek, nama, alias, perusahaan, noKPPN, tglBuka} = req.body
     db('bank')
     .insert({
-        noRek:  noRek,
-        nama:   nama,
-        alias:  alias,
+        noRek: noRek,
+        nama: nama,
+        alias: alias,
         perusahaan: perusahaan,
         noKPPN: noKPPN,
         tglBuka: tglBuka
@@ -30,7 +30,7 @@ const addBank= async (req, res) => {
 }
 
 const delBank= async (req, res) => {
-    const {id} = req.body
+    const id = req.params.id
     db('bank')
     .where('id', id)
     .del()
@@ -39,13 +39,14 @@ const delBank= async (req, res) => {
 }
 
 const editBank= async (req, res) => {
+    const id = req.params.id
     const {noRek, nama, alias, perusahaan, noKPPN, tglBuka, tglTutup} = req.body
     db('bank')
     .where('id', id)
     .update({
-        noRek:  noRek,
-        nama:   nama,
-        alias:  alias,
+        noRek: noRek,
+        nama: nama,
+        alias: alias,
         perusahaan: perusahaan,
         noKPPN: noKPPN,
         tglBuka: tglBuka,

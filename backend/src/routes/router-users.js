@@ -6,5 +6,6 @@ router.post('/adduser', checkAccess('manajemenuser'), users.addUser)
 router.delete('/deluser', checkAccess('manajemenuser'), users.delUser)
 router.put('/edituser', checkAccess('manajemenuser'), users.editUser)
 router.get('/alluser', checkAccess('manajemenuser'), users.allUser)
+router.get('/user/:id', checkAccess('manajemenuser'), users.getUserById)
 
 module.exports = router
