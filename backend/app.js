@@ -14,7 +14,8 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie:{
-        secure: 'auto'
+        secure: 'auto',
+        maxAge: 360000
     }
 }))
 app.use(cors({
@@ -25,12 +26,14 @@ app.use(cors({
 const {
     routerUsers,
     routerAuth,
-    routerBank
+    routerBank,
+    routerTransaksi
 } = require('./src/routes')
 
 app.use('/', routerAuth)
 app.use('/', routerBank)
 app.use('/', routerUsers)
+app.use('/', routerTransaksi)
 
 app.listen(process.env.APP_PORT, () => {
     console.log(`Server Up and Running on Port ${process.env.APP_PORT}`)
