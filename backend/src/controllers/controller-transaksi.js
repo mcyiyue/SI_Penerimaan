@@ -70,9 +70,21 @@ const editTrans= async (req, res) => {
     .catch(e => res.status(400).send(e.code))
 }
 
+const getTransById= async (req, res) => {
+    const id = req.params.id
+    db('transaksi')
+    .where('id', id)
+    .select('*')
+    .then((resp) => {
+        res.status(200).send(resp)
+    })
+    .catch(e => res.status(400).send(e))
+}
+
 module.exports= {
     allTrans,
     addTrans,
     delTrans,
-    editTrans
+    editTrans,
+    getTransById
 }

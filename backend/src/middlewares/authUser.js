@@ -6,7 +6,7 @@ const checkModules = function(subModulesNama) {
  }
 }
 
-const checkAccess = function(subModulesNama) {
+const checkAccess = function() {
     return async function(req, res, next) {
        (req.session.userId)
        ? next()

@@ -56,9 +56,25 @@ const editBank= async (req, res) => {
     .catch(e => res.status(400).send(e.code))
 }
 
+const getBankById = async (req, res) => {
+    const id = req.params.id
+    db('bank')
+    .select('*')
+    .where('id', id)
+    .then((resp) => {
+        if(resp.length){
+            res.status(200).send(resp)
+        } else{
+            res.send('TIDAK ADA DATA BANK')
+        }
+    })
+    .catch(e => res.status(400).send(e))
+}
+
 module.exports= {
     allBank,
     addBank,
     delBank,
-    editBank
+    editBank,
+    getBankById
 }

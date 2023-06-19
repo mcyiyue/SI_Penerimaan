@@ -27,13 +27,18 @@ const {
     routerUsers,
     routerAuth,
     routerBank,
-    routerTransaksi
+    routerTransaksi,
+    routerGroup,
+    routerBku
 } = require('./src/routes')
 
 app.use('/', routerAuth)
 app.use('/', routerBank)
 app.use('/', routerUsers)
 app.use('/', routerTransaksi)
+app.use('/', routerGroup)
+app.use('/', routerBku)
+
 
 app.listen(process.env.APP_PORT, () => {
     console.log(`Server Up and Running on Port ${process.env.APP_PORT}`)
