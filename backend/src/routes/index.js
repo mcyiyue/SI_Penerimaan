@@ -4,6 +4,7 @@ const routerTransaksi = require('./router-transaksi')
 const routerAuth = require('./router-auth')
 const routerGroup = require('./router-group')
 const routerBku = require('./router-bku')
+const routerRealisasi = require('./router-realisasi')
 
 module.exports = {
     routerBank,
@@ -11,5 +12,6 @@ module.exports = {
     routerUsers,
     routerTransaksi,
     routerGroup,
-    routerBku
+    routerBku,
+    routerRealisasi
 }

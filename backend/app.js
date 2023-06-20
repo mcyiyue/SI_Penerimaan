@@ -29,7 +29,8 @@ const {
     routerBank,
     routerTransaksi,
     routerGroup,
-    routerBku
+    routerBku,
+    routerRealisasi
 } = require('./src/routes')
 
 app.use('/', routerAuth)
@@ -38,6 +39,7 @@ app.use('/', routerUsers)
 app.use('/', routerTransaksi)
 app.use('/', routerGroup)
 app.use('/', routerBku)
+app.use('/', routerRealisasi)
 
 
 app.listen(process.env.APP_PORT, () => {

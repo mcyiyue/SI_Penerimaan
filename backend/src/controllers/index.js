@@ -4,6 +4,7 @@ const users = require('./controller-users')
 const auth = require('./controller-auth')
 const group = require('./controller-group')
 const bku = require('./controller-bku')
+const realisasi = require('./controller-realisasi')
 
 module.exports ={
 	transaksi,
@@ -11,6 +12,7 @@ module.exports ={
 	users,
 	auth,
 	group,
-	bku
+	bku,
+	realisasi
 };
 
