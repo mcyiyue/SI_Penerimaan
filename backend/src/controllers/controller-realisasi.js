@@ -23,7 +23,7 @@ const realisasiUnitKerja = async (req, res) => {
 }
 
 const realisasiBas = async (req, res) => {
-    const {tglAwal, tglAkhir} = req.body
+    const {tglAwal='2023-01-01', tglAkhir='2023-01-31'} = req.body
     db('bas')
     .leftJoin('transaksi', 'bas.akun', 'transaksi.bas_akun')
     .whereBetween('transaksi.tgl', [tglAwal, tglAkhir])

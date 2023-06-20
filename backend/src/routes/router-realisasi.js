@@ -3,6 +3,6 @@ const { realisasi } = require('../controllers')
 const { checkModules } = require('../middlewares/authUser')
 
 router.post('/realisasiunitkerja', realisasi.realisasiUnitKerja)
-router.post('/realisasibas', realisasi.realisasiBas)
+router.get('/realisasibas', realisasi.realisasiBas)
 
 module.exports = router
