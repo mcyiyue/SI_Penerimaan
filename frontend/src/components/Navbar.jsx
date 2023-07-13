@@ -6,8 +6,8 @@ const Navbar = () => {
     <div>
         <nav className="navbar is-fixed-top has-shadow" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
-            <NavLink to="/dashboard" className="navbar-item" href="https://bulma.io">
-              <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
+            <NavLink to="/dashboard" className="navbar-item">
+              <img alt="" src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
             </NavLink>
         
             <a href='!#' role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -18,7 +18,8 @@ const Navbar = () => {
           </div>
         
           <div id="navbarBasicExample" className="navbar-menu">
-        
+            <div class="navbar-start">
+            </div> 
             <div className="navbar-end">
               <div className="navbar-item">
                 <div className="buttons">

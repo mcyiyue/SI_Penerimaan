@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 
-const Layout = () => {
+const Layout = (props) => {
   return (
     <React.Fragment>
         <Navbar />
@@ -11,7 +11,7 @@ const Layout = () => {
                 <Sidebar />
             </div>
             <div className="column has-background-light">
-                <main>{children}</main>
+                <main>{props.children}</main>
             </div>
         </div>
     </React.Fragment>
