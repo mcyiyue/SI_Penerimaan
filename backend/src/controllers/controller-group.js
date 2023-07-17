@@ -51,7 +51,7 @@ const allGroupAccess= async (req, res) => {
     const groupId = req.params.id
     db('group_access')
     .select('*')
-    .where('groups_id', groupId)
+    .where('group_id', groupId)
     .then((resp) => {
         if(resp.length){
             res.status(200).send(resp)
@@ -64,11 +64,11 @@ const allGroupAccess= async (req, res) => {
 
 
 const addGroupAccess= async (req, res) => {
-    const {nama, keterangan} = req.body
+    const {groupId, subModuleId} = req.body
     db('group')
     .insert({
-        nama: nama,
-        keterangan: keterangan
+        sub_module_id: groupId,
+        group_id: subModuleId
     })
     .then(resp => res.status(201).send(resp))
     .catch(e => res.status(400).send(e.code))
@@ -76,7 +76,7 @@ const addGroupAccess= async (req, res) => {
 
 const delGroupAccess= async (req, res) => {
     const id = req.params.id
-    db('group')
+    db('group_access')
     .where('id', id)
     .del()
     .then(resp => res.send(resp.toString()))

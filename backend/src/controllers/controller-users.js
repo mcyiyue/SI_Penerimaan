@@ -38,7 +38,7 @@ const getUserById = async (req, res) => {
 }
 
 const addUser= async (req, res) => {
-    const {username, password, nama, groupsId, unitsId} = req.body
+    const {username, password, nama, groupsId, unitId} = req.body
     const salt = await bcrypt.genSaltSync(10);
     const hashPassword = await bcrypt.hashSync(password, salt);
     db('users')
@@ -47,7 +47,7 @@ const addUser= async (req, res) => {
         password: hashPassword,
         nama: nama,
         groups_id: groupsId,
-        units_id: unitsId
+        unit_id: unitId
     })
     .then(resp => res.status(201).send(resp))
     .catch(e => res.status(400).send(e.code))
@@ -64,7 +64,7 @@ const delUser= async (req, res) => {
 
 const editUser= async (req, res) => {
     const id = req.params.id
-    const {username, password, nama, active, groupsId, unitsId} = req.body
+    const {username, password, nama, active, groupsId, unitId} = req.body
     const salt = await bcrypt.genSaltSync(10)
     const hashPassword = password ? await bcrypt.hashSync(password, salt) : ''
     db('users')
@@ -75,7 +75,7 @@ const editUser= async (req, res) => {
         nama: nama,
         active: active,
         groups_id: groupsId,
-        units_id: unitsId
+        unit_id: unitId
     })
     .then(resp => res.status(201).send(resp.toString()))
     .catch(e => res.status(400).send(e.code))

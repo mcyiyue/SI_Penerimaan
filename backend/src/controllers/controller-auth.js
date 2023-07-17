@@ -4,8 +4,8 @@ const bcrypt = require('bcrypt');
 const loginUser= async (req, res) => {
     const {username, password=''} = req.body
     db('users')
-    .leftJoin('units', 'users.units_id', 'units.id')
-    .leftJoin('groups', 'users.groups_id', 'groups.id')
+    .leftJoin('units', 'users.unit_id', 'units.id')
+    .leftJoin('groups', 'users.group_id', 'groups.id')
     .where({
         'users.username':username,
         'users.active':1
@@ -15,10 +15,10 @@ const loginUser= async (req, res) => {
         username:'users.username',
         password:'users.password',
         nama: 'users.nama',
-        groups_id:'groups_id',
-        units_id: 'users.units_id',
-        groups_nama:'groups.nama',
-        units_nama:'units.nama'
+        group_id:'group_id',
+        unit_id: 'users.unit_id',
+        group_nama:'groups.nama',
+        unit_nama:'units.nama'
     })
     .then((resp) => {
         if(resp.length){
@@ -26,15 +26,15 @@ const loginUser= async (req, res) => {
             if(isValid){
                 delete resp[0].password
                 db('group_access')
-                .leftJoin('sub_modules','group_access.sub_modules_id','sub_modules.id' )
-                .leftJoin('modules', 'sub_modules.modules_id', 'modules.id')
+                .leftJoin('sub_modules','group_access.sub_module_id','sub_modules.id' )
+                .leftJoin('modules', 'sub_modules.module_id', 'modules.id')
                 .where({
-                    'group_access.groups_id':resp[0].groups_id
+                    'group_access.group_id':resp[0].group_id
                 })
                 .select({
-                    modules_id:'modules.id',
+                    module_id:'modules.id',
                     modules_nama:'modules.nama',
-                    sub_modules_id:'sub_modules.id',
+                    sub_module_id:'sub_modules.id',
                     sub_modules_route:'sub_modules.route',
                     sub_modules_nama:'sub_modules.nama'
                 })
@@ -43,21 +43,21 @@ const loginUser= async (req, res) => {
                     let modules=[]
                     let tempModules
                     for (let i = 0; i < modulesResp.length; i++){
-                        if (tempModules!=modulesResp[i].modules_id){
+                        if (tempModules!=modulesResp[i].module_id){
                             modules.push({
-                                id:modulesResp[i].modules_id,
+                                id:modulesResp[i].module_id,
                                 nama:modulesResp[i].modules_nama,
                                 sub_modules:[{
-                                    id: modulesResp[i].sub_modules_id,
+                                    id: modulesResp[i].sub_module_id,
                                     nama: modulesResp[i].sub_modules_nama,
                                     route:modulesResp[i].sub_modules_route
                                 }]
                             })
-                            tempModules=modulesResp[i].modules_id
+                            tempModules=modulesResp[i].module_id
                         } else {
                             // console.log(modulesResp[i],'onLoop')
                             modules[modules.length-1].sub_modules.push({
-                                id: modulesResp[i].sub_modules_id,
+                                id: modulesResp[i].sub_module_id,
                                 nama: modulesResp[i].sub_modules_nama,
                                 route:modulesResp[i].sub_modules_route
                             })
@@ -101,8 +101,8 @@ const me = async (req, res) => {
         res.status(401).send('Mohon Login ke Akun Anda')
     } else {
         db('users')
-        .leftJoin('units', 'users.units_id', 'units.id')
-        .leftJoin('groups', 'users.groups_id', 'groups.id')
+        .leftJoin('units', 'users.unit_id', 'units.id')
+        .leftJoin('groups', 'users.group_id', 'groups.id')
         .where({
             'users.id':req.session.userId,
             'users.active':1
@@ -112,24 +112,24 @@ const me = async (req, res) => {
             username:'users.username',
             password:'users.password',
             nama: 'users.nama',
-            groups_id:'groups_id',
-            units_id: 'users.units_id',
-            groups_nama:'groups.nama',
-            units_nama:'units.nama'
+            group_id:'group_id',
+            unit_id: 'users.unit_id',
+            group_nama:'groups.nama',
+            unit_nama:'units.nama'
         })
         .then((resp) => {
             if(resp.length){
                 delete resp[0].password
                 db('group_access')
-                .leftJoin('sub_modules','group_access.sub_modules_id','sub_modules.id' )
-                .leftJoin('modules', 'sub_modules.modules_id', 'modules.id')
+                .leftJoin('sub_modules','group_access.sub_module_id','sub_modules.id' )
+                .leftJoin('modules', 'sub_modules.module_id', 'modules.id')
                 .where({
-                    'group_access.groups_id':resp[0].groups_id
+                    'group_access.group_id':resp[0].group_id
                 })
                 .select({
-                    modules_id:'modules.id',
+                    module_id:'modules.id',
                     modules_nama:'modules.nama',
-                    sub_modules_id:'sub_modules.id',
+                    sub_module_id:'sub_modules.id',
                     sub_modules_route:'sub_modules.route',
                     sub_modules_nama:'sub_modules.nama'
                 })
@@ -138,21 +138,21 @@ const me = async (req, res) => {
                     let modules=[]
                     let tempModules
                     for (let i = 0; i < modulesResp.length; i++){
-                        if (tempModules!=modulesResp[i].modules_id){
+                        if (tempModules!=modulesResp[i].module_id){
                             modules.push({
-                                id:modulesResp[i].modules_id,
+                                id:modulesResp[i].module_id,
                                 nama:modulesResp[i].modules_nama,
                                 sub_modules:[{
-                                    id: modulesResp[i].sub_modules_id,
+                                    id: modulesResp[i].sub_module_id,
                                     nama: modulesResp[i].sub_modules_nama,
                                     route:modulesResp[i].sub_modules_route
                                 }]
                             })
-                            tempModules=modulesResp[i].modules_id
+                            tempModules=modulesResp[i].module_id
                         } else {
                             // console.log(modulesResp[i],'onLoop')
                             modules[modules.length-1].sub_modules.push({
-                                id: modulesResp[i].sub_modules_id,
+                                id: modulesResp[i].sub_module_id,
                                 nama: modulesResp[i].sub_modules_nama,
                                 route:modulesResp[i].sub_modules_route
                             })

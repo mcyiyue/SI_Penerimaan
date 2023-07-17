@@ -6,7 +6,7 @@ const Layout = (props) => {
   return (
     <React.Fragment>
         <Navbar />
-        <div className="column mt 6">
+        <div className="columns mt-6">
             <div className="column is-2">
                 <Sidebar />
             </div>

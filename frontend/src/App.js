@@ -1,16 +1,17 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import {
-  Layout
+  Layout,
+  Dashboard
 } from './pages'
-import 'bulma/css/bulma.min.css';
+import Login from './components/Login';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
-        </Route>
+        <Route path='/' element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );
